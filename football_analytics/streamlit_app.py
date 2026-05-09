@@ -96,14 +96,28 @@ def inject_app_shell_css() -> None:
             color: var(--gabrela-ink);
         }
         header[data-testid="stHeader"] {
+            display: none !important;
             background: #0c1015 !important;
             border-bottom: 1px solid rgba(255,255,255,0.04);
         }
+        div[data-testid="stDecoration"] {
+            display: none !important;
+        }
         [data-testid="stToolbar"] {
+            display: none !important;
             background: transparent !important;
+        }
+        [data-testid="stHeaderActionElements"],
+        [data-testid="stStatusWidget"] {
+            display: none !important;
         }
         [data-testid="stAppViewContainer"] > .main .block-container {
             padding-top: 0.75rem !important;
+        }
+        .stApp > header {
+            display: none !important;
+            height: 0 !important;
+            min-height: 0 !important;
         }
         section[data-testid="stSidebar"] {
             background: linear-gradient(180deg, #0a0d11 0%, #10151d 100%);
@@ -590,6 +604,11 @@ def inject_app_shell_css() -> None:
             font-size: 0.75rem;
             font-weight: 800;
         }
+        .gabrela-market-chip.inactive {
+            background: rgba(148,163,184,0.10);
+            border: 1px solid rgba(148,163,184,0.18);
+            color: #7f8b99;
+        }
         .gabrela-favorite-chip {
             display: inline-flex;
             align-items: center;
@@ -710,93 +729,6 @@ def inject_app_shell_css() -> None:
             margin-top: 3px;
             font-size: 0.84rem;
         }
-        .gabrela-slip {
-            background: linear-gradient(180deg, rgba(23,29,37,0.98), rgba(18,24,32,0.98));
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.24);
-            margin-bottom: 14px;
-        }
-        .gabrela-slip-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .gabrela-slip-index {
-            color: var(--gabrela-yellow);
-            font-size: 0.82rem;
-            font-weight: 900;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-        .gabrela-slip-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5px 10px;
-            border-radius: 999px;
-            background: rgba(31,168,102,0.14);
-            border: 1px solid rgba(31,168,102,0.28);
-            color: #baf4d0;
-            font-size: 0.74rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-        }
-        .gabrela-slip-badges {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .gabrela-slip-body {
-            padding: 12px 14px 14px 14px;
-        }
-        .gabrela-slip-match {
-            color: #ffffff;
-            font-weight: 800;
-            font-size: 0.98rem;
-            margin-bottom: 4px;
-        }
-        .gabrela-slip-sub {
-            color: var(--gabrela-muted);
-            font-size: 0.77rem;
-            margin-bottom: 10px;
-        }
-        .gabrela-slip-grid {
-            display: grid;
-            grid-template-columns: 0.85fr 1.25fr 0.75fr 0.75fr;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-        .gabrela-slip-cell {
-            padding: 8px 10px;
-            border-radius: 14px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .gabrela-slip-cell-label {
-            color: var(--gabrela-muted);
-            font-size: 0.66rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 4px;
-        }
-        .gabrela-slip-cell-value {
-            color: #ffffff;
-            font-weight: 800;
-            font-size: 0.86rem;
-        }
-        .gabrela-slip-search {
-            color: #8fa0b3;
-            font-size: 0.76rem;
-            border-top: 1px dashed rgba(255,255,255,0.12);
-            padding-top: 8px;
-        }
         div[data-baseweb="tab-list"] {
             gap: 10px;
             padding-bottom: 8px;
@@ -833,9 +765,6 @@ def inject_app_shell_css() -> None:
             .gabrela-match-row {
                 grid-template-columns: 1fr;
             }
-            .gabrela-slip-grid {
-                grid-template-columns: 1fr;
-            }
         }
         div[data-testid="stMetric"] {
             background: linear-gradient(180deg, rgba(23,29,37,0.98), rgba(18,24,32,0.98));
@@ -858,6 +787,11 @@ def inject_app_shell_css() -> None:
         }
         .stMarkdown, .stText, p, label, div {
             color: #eef4fb;
+        }
+        pre, code {
+            background: #141a22 !important;
+            color: #dbe7f3 !important;
+            border: 1px solid rgba(255,255,255,0.06);
         }
         .stButton > button, .stDownloadButton > button {
             border-radius: 14px;
@@ -1044,7 +978,8 @@ def render_brand_header() -> None:
             "</div>"
         )
     st.markdown(
-        f"""
+        textwrap.dedent(
+            f"""
         <div class="gabrela-hero">
             <div class="gabrela-hero-title">{BRAND_TITLE}</div>
             <div class="gabrela-hero-subtitle">{BRAND_SUBTITLE}</div>
@@ -1055,21 +990,24 @@ def render_brand_header() -> None:
                 {activity_chip}
             </div>
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
 
 def render_sidebar_brand_card() -> None:
     st.markdown(
-        """
+        textwrap.dedent(
+            """
         <div class="gabrela-sidebar-brand">
             <div class="gabrela-sidebar-brand-title">GABRELA</div>
             <div class="gabrela-sidebar-brand-sub">
                 iddaa odakli tahmin, kupon ve performans paneli
             </div>
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
@@ -1083,7 +1021,8 @@ def render_sidebar_section(label: str) -> None:
 
 def render_sidebar_flow() -> None:
     st.markdown(
-        """
+        textwrap.dedent(
+            """
         <div class="gabrela-sidebar-flow">
             <div class="gabrela-sidebar-flow-item is-active">
                 <span class="gabrela-sidebar-flow-index">1</span>
@@ -1118,7 +1057,8 @@ def render_sidebar_flow() -> None:
                 </div>
             </div>
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
@@ -1133,7 +1073,8 @@ def render_sidebar_brand_shell() -> None:
         f"<span>{html_lib.escape(str(activity.get('kind', 'Sistem')))} calisiyor</span>"
     )
     st.markdown(
-        f"""
+        textwrap.dedent(
+            f"""
         <div class="gabrela-sidebar-brand">
             <div class="gabrela-sidebar-brand-row">
                 <div class="gabrela-sidebar-brand-badge">G</div>
@@ -1148,7 +1089,8 @@ def render_sidebar_brand_shell() -> None:
                 {status_line}
             </div>
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
@@ -2388,37 +2330,41 @@ def render_match_center_board(matches_df: pd.DataFrame, limit: int = 120) -> Non
     for _, row in matches_df.head(limit).iterrows():
         status_text = str(row.get("status") or "-").upper()
         source_text = str(row.get("odds_source") or row.get("source") or "-").upper()
-        market_badges = []
-        if any(pd.notna(row.get(col)) for col in ["home_odds", "draw_odds", "away_odds"]):
-            market_badges.append("1X2")
-        if any(pd.notna(row.get(col)) for col in ["under_25_odds", "over_25_odds"]):
-            market_badges.append("2.5")
-        if any(
-            pd.notna(row.get(col))
-            for col in [
-                "double_chance_1x_odds",
-                "double_chance_12_odds",
-                "double_chance_x2_odds",
-                "market_double_chance_1x_odds",
-                "market_double_chance_12_odds",
-                "market_double_chance_x2_odds",
-            ]
-        ):
-            market_badges.append("C.Sans")
-        if any(
-            pd.notna(row.get(col))
-            for col in [
-                "handicap_home_10_odds",
-                "handicap_draw_10_odds",
-                "handicap_away_10_odds",
-                "market_handicap_home_10_odds",
-                "market_handicap_draw_10_odds",
-                "market_handicap_away_10_odds",
-            ]
-        ):
-            market_badges.append("H1:0")
+        market_specs = [
+            (
+                "1X2",
+                ["home_odds", "draw_odds", "away_odds"],
+            ),
+            (
+                "2.5",
+                ["under_25_odds", "over_25_odds"],
+            ),
+            (
+                "C.Sans",
+                [
+                    "double_chance_1x_odds",
+                    "double_chance_12_odds",
+                    "double_chance_x2_odds",
+                    "market_double_chance_1x_odds",
+                    "market_double_chance_12_odds",
+                    "market_double_chance_x2_odds",
+                ],
+            ),
+            (
+                "H1:0",
+                [
+                    "handicap_home_10_odds",
+                    "handicap_draw_10_odds",
+                    "handicap_away_10_odds",
+                    "market_handicap_home_10_odds",
+                    "market_handicap_draw_10_odds",
+                    "market_handicap_away_10_odds",
+                ],
+            ),
+        ]
         badges_html = "".join(
-            f"<span class='gabrela-market-chip'>{html_lib.escape(badge)}</span>" for badge in market_badges[:4]
+            f"<span class='gabrela-market-chip{' inactive' if not any(pd.notna(row.get(col)) for col in cols) else ''}'>{html_lib.escape(label)}</span>"
+            for label, cols in market_specs
         )
         rows.append(
             textwrap.dedent(
@@ -2739,7 +2685,8 @@ def render_coupon_signal_panel(
                 "</div>"
             )
 
-    panel_html = f"""
+    panel_html = textwrap.dedent(
+        f"""
     <div style="
         background:{bg_color};
         border:2px solid {border_color};
@@ -2761,6 +2708,7 @@ def render_coupon_signal_panel(
         {selection_steps_html}
     </div>
     """
+    ).strip()
     st.markdown(panel_html, unsafe_allow_html=True)
     if avg_edge is not None and avg_confidence is not None:
         c1, c2 = st.columns(2)
@@ -2839,7 +2787,8 @@ def render_dashboard_kpi_row(cards: list[dict[str, str]]) -> None:
             else ""
         )
         col.markdown(
-            f"""
+            textwrap.dedent(
+                f"""
             <div class="gabrela-kpi-card">
                 <div class="gabrela-kpi-head">
                     <div class="gabrela-kpi-label">{html_lib.escape(str(card.get("label", "")))}</div>
@@ -2849,7 +2798,8 @@ def render_dashboard_kpi_row(cards: list[dict[str, str]]) -> None:
                 {accent_html}
                 {subtitle_html}
             </div>
-            """,
+            """
+            ).strip(),
             unsafe_allow_html=True,
         )
 
@@ -2859,25 +2809,29 @@ def render_panel_card(title: str, subtitle: str = "", body_html: str = "") -> No
         f"<div class='gabrela-panel-subtitle'>{html_lib.escape(subtitle)}</div>" if subtitle else ""
     )
     st.markdown(
-        f"""
+        textwrap.dedent(
+            f"""
         <div class="gabrela-panel-card">
             <div class="gabrela-panel-title">{html_lib.escape(title)}</div>
             {subtitle_html}
             {body_html}
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
 
 def render_section_heading(title: str, badge: str = "*") -> None:
     st.markdown(
-        f"""
+        textwrap.dedent(
+            f"""
         <div class="gabrela-section-title">
             <span class="gabrela-section-title-badge">{html_lib.escape(badge)}</span>
             <span>{html_lib.escape(title)}</span>
         </div>
-        """,
+        """
+        ).strip(),
         unsafe_allow_html=True,
     )
 
