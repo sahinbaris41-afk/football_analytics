@@ -1,53 +1,55 @@
 # KULLANIM KILAVUZU
 
-Bu doküman, projeyi başka bir bilgisayarda çalıştırmak ve ilk kullanımı doğru sırayla yapmak için hazırlandı.
+Bu dokuman, projeyi baska bir bilgisayarda calistirmak ve ilk kullanim akisini dogru sirayla izlemek icin hazirlandi.
 
-## 1. Başka Bilgisayarda Kurulum
+## 1. Baska Bilgisayarda Kurulum
 
 ### Gerekenler
 - Windows 10/11
-- Python 3.11 veya üzeri
-- internet erişimi
+- Python 3.11 veya uzeri
+- internet erisimi
 
-### Adımlar
-1. Bu klasörü indir:
-   - GitHub üzerinden zip indirerek
+### Adimlar
+1. Repoyu indir:
+   - GitHub uzerinden ZIP indirerek
    - veya `git clone` ile
-2. Klasöre gir:
+2. Klasore gir:
    - `C:\football_analytics`
-3. Çift tıkla:
-   - `baslat.bat`
+3. `baslat.bat` dosyasini calistir
 
-İlk açılışta sistem:
-- `.venv` oluşturur
-- kütüphaneleri kurar
-- `.env` dosyasını üretir
-- paneli tarayıcıda açar
+Ilk acilista sistem:
+- `.venv` olusturur
+- kutuphaneleri kurar
+- `.env` dosyasini uretir
+- paneli tarayicida acmaya calisir
 
-## 2. İlk Açılıştan Sonra Ne Yapacağım?
+Kurulumdan sonra kontrol icin:
+- `kontrol_et.bat`
 
-Soldaki akış mantığı:
+## 2. Ilk Acilistan Sonra Ne Yapacagim?
+
+Soldaki akis mantigi:
 
 ### [01] Kontrol Merkezi
 - model tipi
-- edge eşiği
+- edge esigi
 - bankroll
 - flat stake
-- kupon seçim adedi
+- kupon secim adedi
 - kupon modu
 
-### [02] Eğitim Ayarları
-- tarihsel lig seçimi
-- sezon derinliği
+### [02] Egitim Ayarlari
+- tarihsel lig secimi
+- sezon derinligi
 
-### [03] Veri İşlemleri
-Genelde şu sırayı kullan:
+### [03] Veri Islemleri
+Genelde su sirayi kullan:
 1. `iddaa sportsbook verisini cek`
 2. gerekirse `Sahte scheduled/live kayitlari temizle`
 3. gerekirse `Supheli aktif 1X2 oranlarini temizle`
 
-### [05] Model İşlemleri
-Genelde şu sırayı kullan:
+### [05] Model Islemleri
+Genelde su sirayi kullan:
 1. `Modeli egit`
 2. `Yaklasan maclari tahmin et`
 3. daha sonra istersen:
@@ -55,47 +57,47 @@ Genelde şu sırayı kullan:
    - `Flat vs Kelly Karsilastir`
    - `Model aciklamalarini hazirla`
 
-## 3. Günlük Kullanım Akışı
+## 3. Gunluk Kullanim Akisi
 
-### Tahmin Üretme
+### Tahmin Uretme
 1. `Model Islemleri > Yaklasan maclari tahmin et`
 2. `Tahminler > Bugun Oyna`
 
 Burada:
-- solda aday maçlar
-- sağda `Gunun Kuponu`
-- altta manuel kupon alanı
+- solda aday maclar
+- sagda `Gunun Kuponu`
+- altta manuel kupon alani
 
-### Listeden Doğrudan Kupon Yapma
-Artık her satırda:
+### Listeden Dogrudan Kupon Yapma
+Her satirda:
 - `Kupona ekle`
-- tekrar basınca `Cikar`
+- tekrar basinca `Cikar`
 
-mantığı var.
+mantigi vardir.
 
 Yani:
-1. soldaki listeden maçları seç
-2. alttaki manuel kupon alanına otomatik düşsün
-3. iddaa toplam oranını ve kupon tutarını gir
+1. soldaki listeden maclari sec
+2. alttaki manuel kupon alanina otomatik dussun
+3. iddaa toplam oranini ve kupon tutarini gir
 4. `Kuponlarima kaydet`
 
-## 4. Kupon Sonucunu Sisteme İşlemek
+## 4. Kupon Sonucunu Sisteme Islemek
 
 `Kuponlarim` sekmesinde:
-- kupon geçmişini görürsün
-- kuponu `Acik / Kazandi / Kaybetti` olarak işaretleyebilirsin
-- böylece kişisel performans özetin oluşur
+- kupon gecmisini gorursun
+- kuponu `Acik / Kazandi / Kaybetti` olarak isaretleyebilirsin
+- boylece kisisel performans ozetin olusur
 
-Bu bölüm şunları takip etmek için önemlidir:
+Bu bolum sunlari takip etmek icin onemlidir:
 - toplam stake
 - kar / zarar
 - ROI
-- hangi liglerde daha başarılı olduğun
-- hangi marketlerde daha başarılı olduğun
+- hangi liglerde daha basarili oldugun
+- hangi marketlerde daha basarili oldugun
 
-## 5. Kullanılabilen Marketler
+## 5. Kullanilabilen Marketler
 
-Veri geldiği ölçüde sistem şu marketleri değerlendirebilir:
+Veri geldigi olcude sistem su marketleri degerlendirebilir:
 - `Mac Sonucu`
 - `2.5 Alt`
 - `2.5 Ust`
@@ -104,82 +106,87 @@ Veri geldiği ölçüde sistem şu marketleri değerlendirebilir:
 - `Handikapli Mac Sonucu 1:0`
 
 Not:
-- her maçta tüm marketler gelmeyebilir
-- bu tamamen iddaa veri kaynağında o marketin o anda bulunmasına bağlıdır
+- her macta tum marketler gelmeyebilir
+- bu tamamen iddaa veri kaynaginda o marketin o anda bulunmasina baglidir
 
-## 6. Model Ekranları Ne İşe Yarıyor?
+## 6. Ekranlar Ne Ise Yariyor?
 
 ### Genel Durum
-- sistem sağlık raporu
-- veri kaynak özeti
-- KPI kartları
+- sistem saglik raporu
+- veri kaynak ozeti
+- KPI kartlari
 
-### Maç Merkezi
-- hızlı bülten görünümü
+### Mac Merkezi
+- hizli bulten gorunumu
 - market rozetleri
 
 ### Tahminler
-- günlük adaylar
-- günün kuponu
+- gunluk adaylar
+- gunun kuponu
 - manuel kupon
 
 ### Geri Test
-- geçmişte stratejinin nasıl çalıştığını gösterir
-- en dürüst ekranlardan biridir
+- gecmiste stratejinin nasil calistigini gosterir
+- en durust ekranlardan biridir
 
-### Model Laboratuvarı
+### Model Laboratuvari
 - hata analizi
-- market bazlı analiz
+- market bazli analiz
 - lig x market segment analizi
 
-### Kuponlarım
-- kendi oynadığın kuponları saklar
-- performans takibi sağlar
+### Kuponlarim
+- kendi oynadigin kuponlari saklar
+- performans takibi saglar
 
-## 7. Bilinen Sınırlar
+## 7. Bilinen Sinirlar
 
-Bu sistemi çalıştırabilir, kullanabilir ve başka bilgisayarda ayağa kaldırabilirsin.  
-Ama dürüst sınırlar:
+Bu sistem su anda:
+- kurulabilir
+- calistirilabilir
+- tahmin uretir
+- kupon kaydeder
+- geri test yapar
+- performans takibi saglar
 
-- sistem hâlâ gelişen bir yapıdır
-- tahmin kalitesi anlamlıdır ama kusursuz değildir
-- en kritik açık alan hâlâ bahis stratejisi optimizasyonudur
-- bazı liglerde ve bazı marketlerde veri eksikliği olabilir
+Ama durust sinirlar:
+- sistem hala gelisen bir yapidir
+- tahmin kalitesi anlamlidir ama kusursuz degildir
+- en kritik acik alan hala bahis stratejisi optimizasyonudur
+- bazi liglerde ve bazi marketlerde veri eksikligi olabilir
 
 ## 8. Sorun Olursa
 
-### Uygulama Açılmıyorsa
+### Uygulama Acilmiyorsa
 - `baslat.bat` ile tekrar dene
-- farklı port açıyorsa, ekranda yazan adresi kullan
+- farkli port aciyorsa, ekranda yazan adresi kullan
+- `kontrol_et.bat` ile temel saglik kontrolu yap
 
-### Tahmin Üretilmiyorsa
-Şu sırayı dene:
+### Tahmin Uretilmiyorsa
+Su sirayi dene:
 1. `iddaa sportsbook verisini cek`
 2. `Supheli aktif 1X2 oranlarini temizle`
 3. `Modeli egit`
 4. `Yaklasan maclari tahmin et`
 
-### Marketler Görünmüyorsa
-- o maçta veri kaynağında market odds’ı yok olabilir
-- özellikle `Cifte Sans` ve `Handikap` için bu normaldir
+### Marketler Gorunmuyorsa
+- o macta veri kaynaginda market oddsi yok olabilir
+- ozellikle `Cifte Sans` ve `Handikap` icin bu normaldir
 
-## 9. Önerilen Kullanım Şekli
+## 9. Onerilen Baslangic Ayari
 
-En güvenli başlangıç:
+En guvenli baslangic:
 - kupon modu: `Temkinli`
-- kupon kaynağı: `Sadece IDDAA`
-- güçlü segment filtresi: önce `Kapali`, sonra test ederek aç
-- flat stake: sabit küçük miktarla başla
+- kupon kaynagi: `Sadece IDDAA`
+- guclu segment filtresi: once `Kapali`, sonra test ederek ac
+- flat stake: sabit kucuk miktarla basla
 
-## 10. Son Söz
+## 10. Son Soz
 
-Bu sistem şu an:
-- kurulabilir
-- çalıştırılabilir
-- tahmin üretir
-- kupon kaydeder
-- geri test yapar
-- performans takibi sağlar
+Bu sistemin gucu tek basina modelden gelmez.
+Asil guc:
+- duzenli veri
+- dogru filtreleme
+- disiplinli kupon secimi
+- geri testten ogrenen strateji
 
-Ama onu “mükemmel” yapan şey tek bir model değil; düzenli veri, doğru filtreleme ve disiplinli kullanım olur.
-
+Bu nedenle en iyi sonuc, sistemi sabirli ve olculu kullaninca gelir.
