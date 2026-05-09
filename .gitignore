@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.env
+
+data/
+*.db
+
+models/*.joblib
+models/*.json
+
+.streamlit/
+*.log
+baslat_*log*.txt
