@@ -56,8 +56,6 @@ from football_analytics.db import (
     list_teams,
     update_team_alias,
 )
-# Veritabanı tablolarını oluştur
-create_tables()
 from football_analytics.explain import compute_model_explanations
 from football_analytics.model_compare import train_and_compare_models
 from football_analytics.normalize import normalize_team_key
@@ -69,7 +67,11 @@ from football_analytics.recommend import (
 )
 from football_analytics.train import MODEL_PATH, train_and_save_model
 
+# BÜTÜN IMPORTLAR BİTTİKTEN SONRA:
+create_tables()
 
+# Artık Streamlit arayüzünü çizmeye başlayabilirsiniz...
+# st.title("Futbol Analitik")
 APP_TIMEZONE = ZoneInfo("Europe/Istanbul")
 MATCH_DRIVER_LABELS = {
     "elo_diff": "Elo farki",
