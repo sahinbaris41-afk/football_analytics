@@ -3,6 +3,16 @@ from typing import Any, Dict, Optional
 
 import numpy as np
 import pandas as pd
+import os
+
+from pathlib import Path
+
+# Projenin ana dizinini bul (football_analytics klasörünün bir üstü)
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# 'data' klasörünü otomatik oluştur (yoksa)
+DATA_DIR = BASE_DIR / "data"
+os.makedirs(DATA_DIR, exist_ok=True)
 
 from sqlalchemy import (
     Boolean,
