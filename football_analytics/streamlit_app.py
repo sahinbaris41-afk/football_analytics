@@ -56,6 +56,8 @@ from football_analytics.db import (
     list_teams,
     update_team_alias,
 )
+# Veritabanı tablolarını oluştur
+create_tables()
 from football_analytics.explain import compute_model_explanations
 from football_analytics.model_compare import train_and_compare_models
 from football_analytics.normalize import normalize_team_key
