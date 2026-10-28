@@ -18,7 +18,7 @@ LOCAL_CSV_IMPORT_DIR.mkdir(parents=True, exist_ok=True)
 
 load_dotenv(ROOT_DIR / ".env")
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///data/football_analytics.db")
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{DATA_DIR}/football_analytics.db")
 
 IDDAA_VERIFY_SSL = os.getenv("IDDAA_VERIFY_SSL", "1").strip().lower() not in {
     "0",
