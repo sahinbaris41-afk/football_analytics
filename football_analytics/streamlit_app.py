@@ -5,6 +5,12 @@ from pathlib import Path
 project_root = Path(__file__).resolve().parent.parent
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
+
+import streamlit as st
+
+# 🚨 KRİTİK KURAL: Bu komut, diğer tüm st. komutlarından ve importlardan önce gelmelidir!
+st.set_page_config(page_title="Futbol Analitik", page_icon="⚽", layout="wide")
+
 from datetime import datetime
 import html as html_lib
 import textwrap
@@ -14,7 +20,6 @@ from zoneinfo import ZoneInfo
 import altair as alt
 import numpy as np
 import pandas as pd
-import streamlit as st
 from sqlalchemy.orm import joinedload
 
 from football_analytics.audit import build_system_health_report
