@@ -8,5 +8,5 @@ joblib==1.5.2
 python-dotenv==1.0.1
 schedule==1.2.2
 psycopg2-binary==2.9.11
-shap==0.46.0
+shap==0.51.0
 pyarrow==17.0.0
